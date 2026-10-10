@@ -20,7 +20,7 @@ def err_func(m, c, x, y):
 #plt.plot(reg.x0, reg.y0, 'o', label='Original data', markersize=10)
 #plt.plot(reg.x0, m*reg.x0 + c, 'r', label='Fitted line')
 plt.legend()
-plt.savefig("regression_plot.png")
+plt.savefig("images/regression_plot.png")
 
 #plt.plot(reg.x0, err_func(m, c, reg.x0, reg.y0), label='Error')
 plt.legend()
@@ -32,7 +32,7 @@ Z = err_func(U, V, reg.x0, reg.y0)
 # Plot the surface
 #fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 #ax.plot_surface(U,V, Z, vmin=Z.min() * 2, cmap="viridis")
-#plt.savefig("err.png")
+#plt.savefig("images/err.png")
 #plt.show
 
 def y_hat(m, c, x):
@@ -62,7 +62,7 @@ plt.plot(reg.x0, reg.y0, 'o', label='Original data', markersize=10)
 plt.plot(reg.x0, m*reg.x0 + c, 'r', label='Fitted line')
 plt.plot(reg.x0, 'g', label='Projected line')
 
-#plt.savefig("projection_plot.png")
+#plt.savefig("images/projection_plot.png")
 
 # Task 8
 residuals = reg.y0 - y_new_hat
@@ -73,4 +73,4 @@ print(f"The dot product of y and y_hat is {np.dot(residuals,y_new_hat)}")
 R = 2*P - np.identity(20)
 plt.plot(reg.x0, R @ reg.y0, 'o', label='Reflected data', markersize=10)
 
-plt.savefig("Reflection_plot.png")
+plt.savefig("images/Reflection_plot.png")

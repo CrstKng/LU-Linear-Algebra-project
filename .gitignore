@@ -221,3 +221,5 @@ __marimo__/
 
 # VSCode things
 .vscode/
+# dont commit images
+.images/

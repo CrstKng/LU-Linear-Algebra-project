@@ -65,8 +65,9 @@ plt.plot(reg.x0, 'g', label='Projected line')
 #plt.savefig("projection_plot.png")
 
 # Task 8
+residuals = reg.y0 - y_new_hat
 
-print(f"The dot product of y and y_hat is {np.dot(reg.y0,y_new_hat)}")
+print(f"The dot product of y and y_hat is {np.dot(residuals,y_new_hat)}")
 
 #Task 9
 R = 2*P - np.identity(20)

@@ -41,6 +41,7 @@ def iterativeRecurrence(A,u_0,n):
         
     return u_n
 # Poor practice, iterativeRecurrence and normalizedRecurrence can probably be condensed into a single function.
+# For problem 4, kinda
 def normalizedRecurrence(A,u_0,n):
     """
     Similar to iterativeRecurrence it instead returns the normalized iteratres of the sequence
@@ -61,7 +62,28 @@ def normalizedRecurrence(A,u_0,n):
         
     return v_n
 
- 
+# Task 5 
+def diagonalizedRecurrence(A,u_0,n):
+    """
+   Multiplies the transposed normalized iteration with an input matrix A.
+    Args:
+        A (ndarray): A 3x3 diagonalizable matrix.
+        a0 (ndarray): A 3x1 matrix of initial values.
+        n (int): The nth iteration at which the sequence will end
+    Returns:
+        ndarray: The diagonalized term q_n
+    """
+    v_0 = u_0 / np.linalg.norm(u_0)
+    v_n = A @ v_0 / np.linalg.norm(A @ v_0)
+    for i in range(0,n+1):
+        print(f"The {i}th value is  = {v_n}") # Task requirement
+        v_n = v_n.T * A @ v_n / np.linalg.norm(A @ v_n)
+        #print(f"Term {i}") # debug
+        
+    return v_n    
+
+
+
 # Declare matrix A (Use dtype float to avoid overflow errors)
 A = np.array([[1,3,2],[-3,4,3],[2,3,1]], dtype = float)
 # Store the initial values in an array 
@@ -85,5 +107,8 @@ alpha_val = [1,1/19]
 
 # Task 2, compute the matrices iteratively. 
 # make comparison between iterative recurrence and the regular one
-print(f"The recurrence equation for z_0[2] at point 399 and alpha 1/19 is {getRecurence(A,alpha_val[1]*z_val[2],399)}, while the iterative one is {iterativeRecurrence(A,alpha_val[1]*z_val[2],399)} while the normalized one is {normalizedRecurrence(A,alpha_val[1]*z_val[2],399)} ")
-print(f"The recurrence equation for z_0[2] at point 400 and alpha 1/19 is {getRecurence(A,alpha_val[1]*z_val[2],400)}, while the iterative one is {iterativeRecurrence(A,alpha_val[1]*z_val[2],400)} while the normalized one is {normalizedRecurrence(A,alpha_val[1]*z_val[2],400)} ")
+# print(f"The recurrence equation for z_0[2] at point 399 and alpha 1/19 is {getRecurence(A,alpha_val[1]*z_val[2],399)}, while the iterative one is {iterativeRecurrence(A,alpha_val[1]*z_val[2],399)} while the normalized one is {normalizedRecurrence(A,alpha_val[1]*z_val[2],399)} ")
+# print(f"The recurrence equation for z_0[2] at point 400 and alpha 1/19 is {getRecurence(A,alpha_val[1]*z_val[2],400)}, while the iterative one is {iterativeRecurrence(A,alpha_val[1]*z_val[2],400)} while the normalized one is {normalizedRecurrence(A,alpha_val[1]*z_val[2],400)} ")
+
+# Display the output for task 5. 
+print(f"The normalized recurrence is {normalizedRecurrence(A,alpha_val[1]*z_val[2],5)}, the diagonalized recurrence is {diagonalizedRecurrence(A,alpha_val[1]*z_val[2],5)} ")

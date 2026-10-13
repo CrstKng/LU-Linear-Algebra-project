@@ -35,7 +35,7 @@ def iterativeRecurrence(A,u_0,n):
     """
     u_n = A @ u_0
     for i in range(0,n+1):
-        print(f"The {i}th value is  = {u_n}") # Task requirement
+        #print(f"The {i}th value is  = {u_n}") # Task requirement
         u_n = A @ u_n
         #print(f"Term {i}") # debug
         
@@ -47,7 +47,7 @@ def normalizedRecurrence(A,u_0,n):
     Similar to iterativeRecurrence it instead returns the normalized iteratres of the sequence
     Args:
         A (ndarray): A 3x3 diagonalizable matrix.
-        a0 (ndarray): A 3x1 matrix of initial values.
+        u_0 (ndarray): A 3x1 matrix of initial values.
         n (int): The nth iteration at which the sequence will end
     Returns:
         ndarray: The nth normalized term of the sequence.
@@ -56,8 +56,8 @@ def normalizedRecurrence(A,u_0,n):
     v_0 = u_0 / np.linalg.norm(u_0)
     v_n = A @ v_0 / np.linalg.norm(A @ v_0)
     for i in range(0,n+1):
-        print(f"The {i}th value is  = {v_n}") # Task requirement
-        v_n = A @ v_n / np.linalg.norm(A @ v_n)
+        #print(f"The {i}th value is  = {v_n}") # Task requirement
+        v_n = (A @ v_n) / np.linalg.norm(A @ v_n)
         #print(f"Term {i}") # debug
         
     return v_n
@@ -68,7 +68,7 @@ def diagonalizedRecurrence(A,u_0,n):
    Multiplies the transposed normalized iteration with an input matrix A.
     Args:
         A (ndarray): A 3x3 diagonalizable matrix.
-        a0 (ndarray): A 3x1 matrix of initial values.
+        u_0 (ndarray): A 3x1 matrix of initial values.
         n (int): The nth iteration at which the sequence will end
     Returns:
         ndarray: The diagonalized term q_n
@@ -76,11 +76,30 @@ def diagonalizedRecurrence(A,u_0,n):
     v_0 = u_0 / np.linalg.norm(u_0)
     v_n = A @ v_0 / np.linalg.norm(A @ v_0)
     for i in range(0,n+1):
-        print(f"The {i}th value is  = {v_n}") # Task requirement
+        # print(f"The {i}th value is  = {v_n}") # Task requirement
         v_n = v_n.T * A @ v_n / np.linalg.norm(A @ v_n)
         #print(f"Term {i}") # debug
         
     return v_n    
+
+def fullfillEpsilon(u_0,A,n,epsilon):
+#    i = 1
+#    result = np.linalg.norm(v - v_star)
+#    while result <=epsilon:
+#    Main idea run the regular normalized interative but use a while loop to log when the loop finds its end point. 
+#    v* determined by n
+    iteration = 0
+    v_star = normalizedRecurrence(A,u_0,n) #  / np.linalg.norm(getRecurence(A,u_0,n))
+    print(f"v* = {v_star}")
+    v_n = A @ u_0
+    print(v_n)
+    while np.linalg.norm(v_n) - np.linalg.norm(v_star) <= epsilon:
+        #print(f"The {i}th value is  = {v_n}") # Task requirement
+        v_n = A @ v_n
+        print(f"Term {iteration}") # debug
+        iteration += 1 
+        
+    return f"Converged in {iteration} iterations."
 
 
 
@@ -111,4 +130,8 @@ alpha_val = [1,1/19]
 # print(f"The recurrence equation for z_0[2] at point 400 and alpha 1/19 is {getRecurence(A,alpha_val[1]*z_val[2],400)}, while the iterative one is {iterativeRecurrence(A,alpha_val[1]*z_val[2],400)} while the normalized one is {normalizedRecurrence(A,alpha_val[1]*z_val[2],400)} ")
 
 # Display the output for task 5. 
-print(f"The normalized recurrence is {normalizedRecurrence(A,alpha_val[1]*z_val[2],5)}, the diagonalized recurrence is {diagonalizedRecurrence(A,alpha_val[1]*z_val[2],5)} ")
+print(f"The normalized recurrence is {normalizedRecurrence(A,alpha_val[1]*z_val[2],400)}, the diagonalized recurrence is {diagonalizedRecurrence(A,alpha_val[1]*z_val[2],400)} ")
+print(f"The normalized recurrence is {normalizedRecurrence(A,alpha_val[1]*z_val[2],29)}, the diagonalized recurrence is {diagonalizedRecurrence(A,alpha_val[1]*z_val[2],29)} ") #Converges exactly after 30 iterations
+
+# Task 7
+print(fullfillEpsilon(alpha_val[0]*z_val[2],A,400,1e-18))

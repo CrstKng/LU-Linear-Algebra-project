@@ -16,8 +16,9 @@ class Plotter:
         plt.title(name)
         plt.legend()
         plt.grid(True)
+        plt.savefig(f"images/regression_plot_{name}.png")        
         plt.show()
-        plt.savefig(f"images/regression_plot_{name}.png")
+
 
    # 
     def Surface_plot(mat: np.ndarray, Y: np.ndarray, coeffcients: float, name: str="MISSING-NAME"):
@@ -73,8 +74,9 @@ class Plotter:
         plt.title("Projection and Reflection" if Y_refl is not None else "Projection")
         plt.legend()
         plt.grid(True)
-        plt.show()
         plt.savefig(f"images/reflection_projection_plot_{name}.png")
+        plt.show()
+
 
     #Same frame as the plotter but using vectors and displays the logarithmic scale
     def Conv_plot(epsilons: float, counts_theoretic, counts_num, title: str, num: str = "0"):
@@ -94,5 +96,6 @@ class Plotter:
         ax.legend()
 
         fig.tight_layout()
-        fig.show()
         fig.savefig(f"images/convergence_plots/convergence_plot_{num}.png")
+        fig.show()
+

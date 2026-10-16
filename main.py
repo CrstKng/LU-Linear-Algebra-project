@@ -16,7 +16,7 @@ A = Matrix_Operations.Matrix_Organiser(X)
 X1, Y_mul = Matrix_Operations.Reader("data/regression_2-1.dat")
 B = Matrix_Operations.Matrix_Organiser(X1)
 
-#write down the datasets into dictionary to use easier.
+#write down the datasets into dictionary to improve usability.
 ds = [("DS 1", X, Y[:, 0],A),
       ("DS 2", X1, Y_mul[:, 0],B),
       ("DS 3", X1, Y_mul[:, 1],B),
@@ -29,17 +29,17 @@ init_guess = np.array([1.0, 1.0])
 ### Task 1.1  & Task 1.2 ###
 ############################
 
-# for name, x, y, mat in ds: #mat will be the n by 2 matrix
-#      #plotting regression lines and errors
-#     Lin_const = Functions.Solver(mat, y)
-#     coefficients_min = sp.optimize.fmin(Functions.ERR, init_guess, args=(mat, y), disp=False)
+for name, x, y, mat in ds: #mat will be the n by 2 matrix
+     #plotting regression lines and errors
+    Lin_const = Functions.Solver(mat, y)
+    coefficients_min = sp.optimize.fmin(Functions.ERR, init_guess, args=(mat, y), disp=False)
 
-#     print(f"{name}\n"
-#           f"Lin const: {Lin_const}\n"
-#           f"fmin: {coefficients_min}\n"
-#           f"min.err: {Functions.ERR(coefficients_min, mat, y)}\n")
+    print(f"{name}\n"
+          f"Lin const: {Lin_const}\n"
+          f"fmin: {coefficients_min}\n"
+          f"min.err: {Functions.ERR(coefficients_min, mat, y)}\n")
 
-#     Plotter.Regression_Plotter(x, y, Lin_const[0], Lin_const[1], name)
+    Plotter.Regression_Plotter(x, y, Lin_const[0], Lin_const[1], f"Plot {name}")
 
 ################
 ### Task 1.3 ###
@@ -75,7 +75,7 @@ print(f"P is orthogonal projection: {Functions.Is_Ortho_Proj(P)}")
 ### Task 1.7 ###
 ################
 #print(Functions.Is_Reflek(R))
-Plotter.Plotter_reflection_projection(X, Y[:, 0], y_hat) # projeciton, task 1.7
+Plotter.Plotter_reflection_projection(X, Y[:, 0], y_hat, name = "projection_only") # projeciton, task 1.7
 
 ################
 ### Task 1.8 ###
@@ -87,7 +87,7 @@ print(f"y hat is the orthogonal projection of y: {Functions.Verify_ortho_proj(Y[
 ################
 R = Matrix_Operations.Refl_Matrix(P)
 y_refl = R @ Y[:,0]
-#Plotter.Plotter_reflection_projection(X, Y[:, 0], y_hat, y_refl) # reflection, task 1.9
+Plotter.Plotter_reflection_projection(X, Y[:, 0], y_hat, y_refl, "Task 1_9") # reflection, task 1.9
 
 ###### End of task 1 #######
 #-------------------------------------------------------------------------------------------------------------------------------

@@ -75,7 +75,7 @@ print(f"P is orthogonal projection: {Functions.Is_Ortho_Proj(P)}")
 ### Task 1.7 ###
 ################
 #print(Functions.Is_Reflek(R))
-Plotter.Plotter_reflection_projection(X, Y[:, 0], y_hat, name = "projection_only") # projeciton, task 1.7
+Plotter.Plotter_reflection_projection(X, Y[:, 0], y_hat) # projeciton, task 1.7
 
 ################
 ### Task 1.8 ###

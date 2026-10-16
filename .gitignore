@@ -223,3 +223,5 @@ __marimo__/
 .vscode/
 # dont commit images
 .images/
+
+calculate.py

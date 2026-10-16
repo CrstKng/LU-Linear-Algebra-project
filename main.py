@@ -7,11 +7,11 @@ from Plotter import Plotter
 from Eig_Operation import Eig_operation
 
 #regression 1-1 management
-X, Y = Matrix_Operations.Reader("regression_1-1.dat")
+X, Y = Matrix_Operations.Reader("data/regression_1-1.dat")
 A = Matrix_Operations.Matrix_Organiser(X)
 
 #regression 2-1 management
-X1, Y_mul = Matrix_Operations.Reader("regression_2-1.dat")
+X1, Y_mul = Matrix_Operations.Reader("data/regression_2-1.dat")
 B = Matrix_Operations.Matrix_Organiser(X1)
 
 #mid-verifi.

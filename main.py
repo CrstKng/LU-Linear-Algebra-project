@@ -47,7 +47,7 @@ for name, x, y, mat in ds: #mat will be the n by 2 matrix
 
 #err surface plot for DS 1
 coeffs = Functions.Solver(A, Y[:, 0])
-#Plotter.Surface_plot(A, Y[:, 0], coeffs)
+Plotter.Surface_plot(A, Y[:, 0], coeffs)
 
 ################
 ### Task 1.5 ###
@@ -104,7 +104,7 @@ M = np.array(
 
 eig_wert, v = Eig_operation.Eig_Dekom(M)
 
-#print(f"eigenwert: {eig_wert}, eigenvektor: {v}")
+print(f"eigenwert: {eig_wert}, eigenvektor: {v}")
 
 ################
 ### Task 2.2 ###
@@ -115,6 +115,7 @@ z0 = np.array([9, 1, 9], dtype=float)
 
 values = Eig_operation.Iteration(M, z0, N=400)
 
+# DEBUG
 # print(values[0]) #initial values
 # print(values[1]) #M @ z0
 # print(values[400]) #400th iteration
